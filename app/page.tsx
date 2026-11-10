@@ -244,7 +244,7 @@ export default function SpareLabLandingPage() {
         </div>
       </header>
 
-      <section className="hero section-wrap cinematic-section" data-cinematic-section>
+      <section className="hero section-wrap">
         <div className="hero-copy">
           <div className="hero-eyebrow"><span className="live-dot" />Next-gen automotive orchestration <span className="eyebrow-divider">•</span> ISO 9001 sourced</div>
           <h1>Everything your vehicle needs.<br /><span>Connected around you.</span></h1>
