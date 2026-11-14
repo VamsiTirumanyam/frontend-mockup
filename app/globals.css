@@ -114,6 +114,7 @@ main { position: relative; z-index: 1; perspective: 1500px; }
 
 .hero { min-height: 558px; padding-block: 70px 66px; display: grid; grid-template-columns: 1.06fr .94fr; gap: clamp(35px, 6vw, 76px); align-items: center; }
 .hero-copy { position: relative; z-index: 1; }
+.hero-car-display { min-width: 0; }
 .hero-eyebrow, .eyebrow { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; font-size: 9px; line-height: 1.4; letter-spacing: .9px; font-weight: 800; color: var(--forest); }
 .hero-eyebrow { padding: 8px 11px; background: #f2eaf6; border: 1px solid rgb(139 92 246 / 20%); border-radius: 30px; }
 .live-dot, .eyebrow-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; flex: 0 0 auto; }
@@ -599,6 +600,31 @@ html[data-theme="dark"] .page-backdrop {
     radial-gradient(ellipse at 85% 65%, rgb(0 115 180 / 13%), transparent 45%),
     radial-gradient(ellipse at 50% 105%, rgb(56 0 75 / 12%), transparent 40%),
     linear-gradient(135deg, #0f0612, #08151c 55%, #080d16);
+}
+html[data-theme="dark"] .vehicle-stage__loading { background-color: rgb(106 58 124 / 32%); }
+html[data-theme="dark"] .vehicle-stage__arc--outer { border-color: rgb(196 145 216 / 20%); }
+html[data-theme="dark"] .vehicle-stage__arc--inner { border-color: rgb(196 145 216 / 13%); }
+html[data-theme="dark"] .vehicle-stage__glow {
+  background: radial-gradient(ellipse at center, rgb(139 64 169 / 24%), rgb(23 13 29 / 0%) 70%);
+}
+html[data-theme="dark"] .vehicle-stage__platform {
+  border-color: rgb(224 194 236 / 24%);
+  background: rgb(47 30 55 / 66%);
+  box-shadow: 0 24px 50px rgb(0 0 0 / 28%);
+}
+html[data-theme="dark"] .vehicle-stage__category[data-active="true"] {
+  border-color: rgb(197 132 221 / 55%);
+  background: rgb(86 43 103 / 74%);
+  color: #f3e5fb;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 22%);
+}
+html[data-theme="dark"] .vehicle-stage__category[data-active="false"] {
+  border-color: rgb(215 190 226 / 16%);
+  background: rgb(32 21 38 / 82%);
+  color: #d3c4db;
+}
+html[data-theme="dark"] .vehicle-stage__category[data-active="false"]:hover {
+  background: rgb(50 31 59 / 96%);
 }
 html[data-theme="dark"] .nav-shell { border-color: rgb(210 185 220 / 13%); background: rgb(17 7 20 / 78%); box-shadow: 0 12px 35px rgb(0 0 0 / 22%); }
 html[data-theme="dark"] .brand-tagline, html[data-theme="dark"] .main-nav a, html[data-theme="dark"] .sign-in { color: #b5a8bb; }
