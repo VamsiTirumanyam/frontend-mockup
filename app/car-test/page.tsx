@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import HoldingVehicleStage from "@/components/holding/HoldingVehicleStage";
+import HoldingVehicleStage from "@/components/HoldingVehicleStage";
 
 export default function CarTestPage() {
   const [active, setActive] = useState("parts");
