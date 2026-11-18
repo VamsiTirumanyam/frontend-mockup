@@ -32,6 +32,20 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import {
+  siBmw,
+  siHonda,
+  siHyundai,
+  siKia,
+  siMahindra,
+  siMg,
+  siRenault,
+  siSkoda,
+  siSuzuki,
+  siTata,
+  siToyota,
+  siVolkswagen,
+} from "simple-icons";
 import ScrollTransitions from "@/components/ScrollTransitions";
 import ThemeToggle from "@/components/ThemeToggle";
 import HoldingVehicleStage from "@/components/holding/HoldingVehicleStage";
@@ -39,18 +53,18 @@ import HoldingVehicleStage from "@/components/holding/HoldingVehicleStage";
 type SearchMode = "part" | "vin" | "vehicle";
 
 const brands = [
-  "Maruti Suzuki",
-  "TATA MOTORS",
-  "mahindra",
-  "TOYOTA",
-  "Hyundai",
-  "Volkswagen",
-  "HONDA",
-  "Kia",
-  "ŠKODA",
-  "RENAULT",
-  "MG",
-  "BMW",
+  { name: "Maruti Suzuki", icon: siSuzuki },
+  { name: "Tata Motors", icon: siTata },
+  { name: "Mahindra", icon: siMahindra },
+  { name: "Toyota", icon: siToyota },
+  { name: "Hyundai", icon: siHyundai },
+  { name: "Volkswagen", icon: siVolkswagen },
+  { name: "Honda", icon: siHonda },
+  { name: "Kia", icon: siKia },
+  { name: "Škoda", icon: siSkoda },
+  { name: "Renault", icon: siRenault },
+  { name: "MG", icon: siMg },
+  { name: "BMW", icon: siBmw },
 ];
 
 const workflow: {
@@ -62,35 +76,75 @@ const workflow: {
 }[] = [
   {
     number: "01",
-    title: "Request",
+    title: "Raise an enquiry",
     description:
-      "Share a part number or vehicle VIN. We verify the fitment against your vehicle before sourcing begins.",
-    note: "One-click fitment verification",
+      "Tell us the part number, name, or send a photo, along with your vehicle brand, model, and trim. A VIN helps us confirm exact fitment.",
+    note: "Part number, name, photo, or VIN",
     icon: Search,
   },
   {
     number: "02",
-    title: "Source",
+    title: "We source from verified vendors",
     description:
-      "Your request is matched with verified OEM and Tier-1 distributor inventories across our network.",
-    note: "120+ authenticated suppliers",
+      "Our procurement team searches its network of verified, authorised vendors for genuine OE parts. No market haggling required.",
+    note: "Genuine OE parts sourced first",
     icon: Zap,
   },
   {
     number: "03",
-    title: "Confirm",
+    title: "Get a clear quote",
     description:
-      "Compare transparent live quotations, select your supplier, and approve a protected purchase order.",
-    note: "Escrow-backed procurement",
+      "Review one consolidated quote with the part, OE / OEM / OES classification, price, and delivery time. No hidden charges.",
+    note: "Classification on every quote",
     icon: ClipboardCheck,
   },
   {
     number: "04",
-    title: "Deliver",
+    title: "Accept and pay securely",
     description:
-      "Every part is hub-checked, securely sealed, and dispatched with GPS tracking to your workshop bay.",
-    note: "Quality checked, door to bay",
+      "Accept the quote and pay by UPI QR or bank transfer. Your order is confirmed to the vendor only after payment is verified.",
+    note: "Payment verified before confirmation",
+    icon: LockKeyhole,
+  },
+  {
+    number: "05",
+    title: "Track your order",
+    description:
+      "Follow your order from confirmation through dispatch, with updates in your Sparelab chat — the same thread where your enquiry began.",
+    note: "Updates in your enquiry chat",
+    icon: Activity,
+  },
+  {
+    number: "06",
+    title: "Delivered to your door",
+    description:
+      "The right part arrives at your workshop or fleet yard. If there is a wrong part or quality issue, our team handles the return with the vendor.",
+    note: "Returns handled with the vendor",
     icon: Truck,
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "One RFQ in the morning and the genuine part is at my workshop by evening. Sparelab has replaced three phone calls and a market run.",
+    name: "Ravi Kumar",
+    role: "RK Auto Garage, Bengaluru",
+    initials: "RK",
+  },
+  {
+    quote:
+      "For a 40-vehicle fleet, downtime is everything. Verified OE parts with a clear quote before we commit — that's why we moved our sourcing here.",
+    name: "Meera Nair",
+    role: "Fleet operations, Chennai",
+    initials: "MN",
+  },
+  {
+    quote:
+      "As a vendor, I list my stock once and get serious, ready-to-buy demand. Payments are clean and the process is transparent.",
+    name: "Imran Shaikh",
+    role: "Authorised parts distributor, Pune",
+    initials: "IS",
   },
 ];
 
@@ -111,6 +165,9 @@ const categories: { title: string; count: string; icon: LucideIcon }[] = [
   { title: "Interior & Trims", count: "10,240 items", icon: Activity },
 ];
 
+const publicAssetPath = (path: string) =>
+  `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+
 const products = [
   {
     title: "Brembo 256mm Ventilated Front Disc",
@@ -119,8 +176,7 @@ const products = [
     part: "09.7011.14",
     stock: "14 in stock",
     type: "OEM / OES",
-    image:
-      "https://images.unsplash.com/photo-1600790142055-619df03207e6?auto=format&fit=crop&w=900&q=85",
+    image: publicAssetPath("/products/brake-disc.png"),
   },
   {
     title: "Monroe Front Gas Strut Damper",
@@ -129,8 +185,7 @@ const products = [
     part: "G8164-MN",
     stock: "8 in stock",
     type: "TIER-1 OEM",
-    image:
-      "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=900&q=85",
+    image: publicAssetPath("/products/front-struts.png"),
   },
   {
     title: "Bosch Common Rail Injector",
@@ -139,8 +194,7 @@ const products = [
     part: "0445110-CR",
     stock: "Low stock · 3",
     type: "GENUINE OES",
-    image:
-      "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=900&q=85",
+    image: publicAssetPath("/products/common-rail-injector.png"),
   },
   {
     title: "Gates PowerGrip Timing Kit + Pump",
@@ -149,8 +203,7 @@ const products = [
     part: "KP15669XS",
     stock: "19 in stock",
     type: "TIER-1 KIT",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=85",
+    image: publicAssetPath("/products/timing-kit.png"),
   },
 ];
 
@@ -282,7 +335,7 @@ export default function SpareLabLandingPage() {
           <div className="hero-copy">
             <div className="hero-eyebrow">
               <span className="live-dot" />
-              Next-gen automotive orchestration{" "}
+              Genuine OE parts first{" "}
               <span className="eyebrow-divider">•</span> ISO 9001 sourced
             </div>
             <h1>
@@ -291,9 +344,9 @@ export default function SpareLabLandingPage() {
               <span>Connected around you.</span>
             </h1>
             <p className="hero-description">
-              Tell us your vehicle and what you need. SpareLab connects verified
-              workshop garages, Tier-1 OEM suppliers, genuine components, and
-              on-demand recovery services into one unified procurement stream.
+              Tell us your vehicle and what you need. Sparelab sources genuine
+              OE parts first from verified, authorised vendors, with fitment
+              checked against your exact trim and every quote clearly classified.
             </p>
             <div className="hero-actions">
               <a
@@ -348,6 +401,7 @@ export default function SpareLabLandingPage() {
         <section
           className="stats-section cinematic-section"
           data-cinematic-section
+          aria-label="Sparelab network at a glance"
         >
           <div className="stats-inner">
             <div className="stats-grid">
@@ -378,34 +432,6 @@ export default function SpareLabLandingPage() {
                 <p>Sub-4 hour bay arrival rate</p>
               </div>
             </div>
-            <div className="testimonial">
-              <div className="testimonial-avatar">VR</div>
-              <div className="testimonial-body">
-                <div className="testimonial-rating">
-                  <span aria-label="5 out of 5 stars">★★★★★</span>
-                  <span className="verified-label">
-                    <BadgeCheck size={14} /> Verified Workshop Partner
-                  </span>
-                </div>
-                <blockquote>
-                  “SpareLab cut our procurement idle-time by 75%. Instead of
-                  calling 14 unverified wholesalers, we input the vehicle
-                  chassis code once and receive guaranteed quotes with sealed QA
-                  tags within the hour.”
-                </blockquote>
-                <p>
-                  <strong>Vikram Rathore</strong>
-                  <span>
-                    {" "}
-                    · Managing Director, AutoKraft Premium Garages (Mumbai &
-                    Pune)
-                  </span>
-                </p>
-              </div>
-              <a className="button button--light" href="#customers">
-                Read Case Study <ArrowRight size={15} />
-              </a>
-            </div>
           </div>
         </section>
 
@@ -415,21 +441,36 @@ export default function SpareLabLandingPage() {
           aria-label="Supported automotive brands"
         >
           <div className="section-wrap brands-inner">
-            <p className="brands-eyebrow">
-              <span className="eyebrow-dot" />
-              Supported vehicle brands & OEM networks <span>·</span> 100% VIN
-              specification match across 45,000+ models
-            </p>
-            <div className="brands-track">
-              <div className="brands-list">
-                {brands.map((brand) => (
-                  <span key={brand}>{brand}</span>
-                ))}
-              </div>
-              <div className="brands-list" aria-hidden="true">
-                {brands.map((brand) => (
-                  <span key={`repeat-${brand}`}>{brand}</span>
-                ))}
+            <div className="brands-pill">
+              <p className="brands-eyebrow">
+                <span className="eyebrow-dot" />
+                Supported vehicle brands & OEM networks
+                <span className="brands-divider">·</span>
+                100% VIN fitment across 45,000+ models
+              </p>
+              <div className="brands-marquee" aria-label="Supported vehicle brands">
+                <div className="brands-track">
+                  {[0, 1].map((repeat) => (
+                    <div className="brands-list" key={repeat} aria-hidden={repeat === 1}>
+                      {brands.map(({ name, icon }) => (
+                        <span
+                          className="brand-logo"
+                          key={`${repeat}-${name}`}
+                          role="img"
+                          aria-label={repeat === 0 ? name : undefined}
+                          title={name}
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d={icon.path} />
+                          </svg>
+                        </span>
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -615,21 +656,116 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
+          className="products-section section-wrap cinematic-section"
+          data-cinematic-section
+          id="featured"
+        >
+          <div className="products-heading">
+            <div>
+              <span className="eyebrow">
+                <span className="eyebrow-dot" />
+                Verified inventory
+              </span>
+              <h2>OE first. Alternatives identified.</h2>
+              <p>
+                OE is our first choice. Any OEM or OES alternative is clearly
+                identified on your quote.
+              </p>
+            </div>
+            <a className="text-link" href="#services">
+              View all 180,000+ parts <ArrowRight size={15} />
+            </a>
+          </div>
+          <div className="product-grid">
+            {products.map((product) => (
+              <article className="product-card" key={product.part}>
+                <div className="product-image">
+                  <img src={product.image} alt={product.title} loading="lazy" />
+                  <span className="stock-tag">{product.stock}</span>
+                  <span className="type-tag">{product.type}</span>
+                </div>
+                <div className="product-info">
+                  <span className="part-number">PART # {product.part}</span>
+                  <h3>{product.title}</h3>
+                  <p>{product.fit}</p>
+                  <span className="vin-badge">
+                    <Check size={12} /> 100% VIN match guaranteed
+                  </span>
+                </div>
+                <div className="product-footer">
+                  <span>
+                    <small>Escrow rate</small>
+                    <strong>{product.price}</strong>
+                  </span>
+                  <button
+                    onClick={() => {
+                      setSearchQuery(product.part);
+                      setSearchMessage(`Request started for ${product.part}`);
+                      document
+                        .getElementById("services")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    Request / Buy <ArrowRight size={13} />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
           className="workflow-section section-wrap cinematic-section"
           data-cinematic-section
           id="workflow"
         >
-          <SectionHeading
-            eyebrow="Streamlined orchestration"
-            title={
-              <>
-                From sourcing to delivery.
-                <br />
-                <span>All connected.</span>
-              </>
-            }
-            description="A clear, quality-controlled journey from your first enquiry to parts arriving at your bay."
-          />
+          <div className="oe-promise-card" id="about">
+            <div className="oe-promise-copy">
+              <span className="eyebrow">
+                <span className="eyebrow-dot" />
+                About Sparelab
+              </span>
+              <h2>OE first, always.</h2>
+              <h3 className="oe-promise-subtitle">
+                The part your vehicle left the factory with.
+              </h3>
+              <p>
+                Every vehicle is built with Original Equipment — parts
+                engineered for that exact model. The aftermarket is a maze of
+                look-alikes, and the wrong part costs you twice: once to buy it,
+                and again when it fails. Sparelab exists so you never have to
+                gamble. We source <strong>Genuine OE parts first</strong>, from
+                authorised, verified vendors, and we tell you exactly what
+                you&apos;re getting — OE, OEM or OES — on every quote.
+              </p>
+            </div>
+            <ul className="oe-promise-points">
+              <li>
+                <CheckCircle2 size={17} /> Classification declared on every
+                quote
+              </li>
+              <li>
+                <CheckCircle2 size={17} /> Verified, authorised vendors only
+              </li>
+              <li>
+                <CheckCircle2 size={17} /> Fitment checked against your exact
+                trim
+              </li>
+            </ul>
+          </div>
+          <div className="workflow-heading">
+            <span className="eyebrow">
+              <span className="eyebrow-dot" />
+              The Sparelab process
+            </span>
+            <h2>
+              From enquiry to delivery <span>in six steps.</span>
+            </h2>
+            <p>
+              A clear journey from your first request to the right part at your
+              workshop or fleet yard.
+            </p>
+          </div>
           <div className="workflow-grid">
             {workflow.map(
               ({ number, title, description, note, icon: Icon }) => (
@@ -647,6 +783,30 @@ export default function SpareLabLandingPage() {
                 </article>
               ),
             )}
+          </div>
+          <div className="reviews-heading">
+            <span className="eyebrow">
+              <span className="eyebrow-dot" />
+              What buyers and sellers say
+            </span>
+            <h2>Trusted on both sides of every order.</h2>
+          </div>
+          <div className="reviews-grid">
+            {testimonials.map(({ quote, name, role, initials }) => (
+              <article className="review-card" key={name}>
+                <div className="review-stars" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </div>
+                <blockquote>“{quote}”</blockquote>
+                <div className="review-author">
+                  <span className="review-avatar">{initials}</span>
+                  <span>
+                    <strong>{name}</strong>
+                    <small>{role}</small>
+                  </span>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -836,62 +996,6 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="products-section section-wrap cinematic-section"
-          data-cinematic-section
-          id="featured"
-        >
-          <div className="products-heading">
-            <div>
-              <span className="eyebrow">
-                <span className="eyebrow-dot" />
-                Verified inventory
-              </span>
-              <h2>Featured OEM & OES components</h2>
-              <p>Verified parts. Transparent pricing. Delivered to your bay.</p>
-            </div>
-            <a className="text-link" href="#services">
-              View all 180,000+ parts <ArrowRight size={15} />
-            </a>
-          </div>
-          <div className="product-grid">
-            {products.map((product) => (
-              <article className="product-card" key={product.part}>
-                <div className="product-image">
-                  <img src={product.image} alt={product.title} loading="lazy" />
-                  <span className="stock-tag">{product.stock}</span>
-                  <span className="type-tag">{product.type}</span>
-                </div>
-                <div className="product-info">
-                  <span className="part-number">PART # {product.part}</span>
-                  <h3>{product.title}</h3>
-                  <p>{product.fit}</p>
-                  <span className="vin-badge">
-                    <Check size={12} /> 100% VIN match guaranteed
-                  </span>
-                </div>
-                <div className="product-footer">
-                  <span>
-                    <small>Escrow rate</small>
-                    <strong>{product.price}</strong>
-                  </span>
-                  <button
-                    onClick={() => {
-                      setSearchQuery(product.part);
-                      setSearchMessage(`Request started for ${product.part}`);
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                  >
-                    Request / Buy <ArrowRight size={13} />
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
           className="conversion-section section-wrap cinematic-section"
           data-cinematic-section
         >
@@ -942,28 +1046,71 @@ export default function SpareLabLandingPage() {
                 <Wrench size={15} /> For suppliers & distributors
               </span>
               <h2>
-                Connect with SpareLab’s
-                <br />
-                procurement network.
+                Your stock, in front of every serious buyer.
               </h2>
               <p>
-                Grow your distributor footprint with direct access to commercial
-                RFQs from workshops, fleets, and vehicle owners.
+                Sparelab connects authorised distributors and verified
+                stockists with workshops, garages, and fleets that need genuine
+                parts — with payments verified before you dispatch.
               </p>
-              <ul>
+              <ul className="vendor-benefits">
                 <li>
-                  <Check size={14} /> Verified RFQs with vehicle data
+                  <Check size={14} /> Serious, ready-to-buy demand qualified by
+                  the Sparelab team
                 </li>
                 <li>
-                  <Check size={14} /> Escrow-secured settlements
+                  <Check size={14} /> List inventory once with a simple
+                  spreadsheet; reach buyers across our cities
                 </li>
                 <li>
-                  <Check size={14} /> Automated inventory integrations
+                  <Check size={14} /> Payment verified before an order is
+                  confirmed to you
+                </li>
+                <li>
+                  <Check size={14} /> One professional counterparty: Sparelab
+                  handles the buyer relationship
+                </li>
+                <li>
+                  <Check size={14} /> Structured RFQs include part number,
+                  brand, model, and trim
+                </li>
+                <li>
+                  <Check size={14} /> Verified-vendor badge helps genuine stock
+                  stand apart from the grey market
                 </li>
               </ul>
-              <a href="#footer" className="button button--primary">
-                Join as a Vendor <ArrowRight size={16} />
+              <h3 className="vendor-onboarding-title">
+                Become a Sparelab vendor
+              </h3>
+              <ol className="vendor-onboarding">
+                <li>
+                  <span>1</span> Write to us with your business details and
+                  brands stocked.
+                </li>
+                <li>
+                  <span>2</span> Our team verifies your business, GST,
+                  authorisations, and references.
+                </li>
+                <li>
+                  <span>3</span> Upload your inventory and start receiving
+                  RFQs.
+                </li>
+              </ol>
+              <a
+                href="https://dev.sparelab.co.in/register?type=vendor"
+                className="button button--primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Become a Sparelab vendor <ArrowRight size={16} />
               </a>
+              <p className="vendor-contact">
+                Sign up in minutes — our procurement team reviews your business
+                before you go live.{" "}
+                <a href="mailto:hello@sparelab.co.in?subject=Vendor%20onboarding%20on%20Sparelab">
+                  Prefer to talk first? Write to hello@sparelab.co.in
+                </a>
+              </p>
             </div>
           </article>
         </section>
@@ -974,11 +1121,12 @@ export default function SpareLabLandingPage() {
               <div className="footer-brand">
                 <Wordmark footer />
                 <p>
-                  The enterprise procurement network for automotive parts
-                  sourcing, OEM cross-cataloguing, and connected supply chains.
+                  Sparelab sources genuine OE parts first from verified,
+                  authorised vendors, with fitment checked and every quote
+                  clearly classified.
                 </p>
                 <span>
-                  <BadgeCheck size={15} /> Verified OEM/OES supply network
+                  <BadgeCheck size={15} /> Genuine OE-first sourcing
                 </span>
               </div>
               <div className="footer-column">
@@ -997,7 +1145,7 @@ export default function SpareLabLandingPage() {
               </div>
               <div className="footer-column">
                 <h3>Company</h3>
-                <a href="#top">About SpareLab</a>
+                <a href="#about">About Sparelab</a>
                 <a href="#footer">Careers</a>
                 <a href="#footer">Press & Media</a>
                 <a href="#footer">Contact Sales</a>
