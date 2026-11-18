@@ -25,12 +25,11 @@ const RADIUS_Y = 30;
 
 type HoldingVehicleStageProps = {
   activeCategory: string;
-  onSelect: (categoryId: string) => void;
+  // onSelect: (categoryId: string) => void;
 };
 
 export default function HoldingVehicleStage({
   activeCategory,
-  onSelect,
 }: HoldingVehicleStageProps) {
   const targetRotation = categoryRotations[activeCategory] ?? 0;
 
@@ -107,10 +106,10 @@ export default function HoldingVehicleStage({
           return (
             <button
               key={category.id}
-              type="button"
+              type=""
               data-active={isActive}
               data-allow-navigation="true"
-              onClick={() => onSelect(category.id)}
+              // onClick={() => onSelect(category.id)}
               className={`vehicle-stage__category inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[11px] font-medium transition-colors ${
                 isActive
                   ? "border-brand-800 bg-brand-800 text-white"
