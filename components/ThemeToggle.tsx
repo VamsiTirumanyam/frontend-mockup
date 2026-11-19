@@ -8,7 +8,7 @@ export default function ThemeToggle() {
   const nextTheme = theme === "dark" ? "light" : "dark";
 
   return (
-    <button
+      <button
       className="theme-toggle"
       type="button"
       onClick={toggleTheme}
@@ -24,5 +24,7 @@ export default function ThemeToggle() {
         <Sun size={16} aria-hidden="true" />
       </span>
     </button>
+    
+
   );
 }

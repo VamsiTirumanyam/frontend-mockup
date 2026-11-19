@@ -18,7 +18,7 @@ export default function ScrollTransitions() {
         desktop: "(min-width: 769px) and (prefers-reduced-motion: no-preference)",
         compact: "(max-width: 768px) and (prefers-reduced-motion: no-preference)",
       },
-      (context) => {
+      (context: { conditions?: { compact?: boolean } }) => {
         const compact = context.conditions?.compact ?? false;
 
         sections.forEach((section, index) => {
