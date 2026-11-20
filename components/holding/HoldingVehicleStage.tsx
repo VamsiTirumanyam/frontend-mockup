@@ -10,15 +10,7 @@ const CarScene = dynamic(() => import("@/components/home/CarScene"), {
   ),
 });
 
-const categoryRotations: Record<string, number> = {
-  parts: -Math.PI / 2,
-  garages: -Math.PI / 3,
-  tyres: -Math.PI / 6,
-  accessories: 0,
-  wash: Math.PI / 6,
-  insurance: Math.PI / 3,
-  towing: Math.PI / 2,
-};
+const CAR_ROTATION = -Math.PI / 2;
 
 const RADIUS_X = 40;
 const RADIUS_Y = 30;
@@ -32,8 +24,6 @@ export default function HoldingVehicleStage({
   activeCategory,
   onSelect,
 }: HoldingVehicleStageProps) {
-  const targetRotation = categoryRotations[activeCategory] ?? 0;
-
   return (
     <div>
       <div className="relative h-70 w-full sm:h-90 lg:h-105 xl:h-120">
@@ -49,7 +39,7 @@ export default function HoldingVehicleStage({
 
         {/* 3D car */}
         <div className="absolute inset-x-0 bottom-[6%] z-10 h-[78%]">
-          <CarScene targetRotation={targetRotation} />
+          <CarScene targetRotation={CAR_ROTATION} />
         </div>
 
         {/* floating cards: tablet and desktop only */}
