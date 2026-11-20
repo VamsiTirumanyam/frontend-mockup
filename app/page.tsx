@@ -46,9 +46,9 @@ import {
   siToyota,
   siVolkswagen,
 } from "simple-icons";
-import ScrollTransitions from "@/components/ScrollTransitions";
 import ThemeToggle from "@/components/ThemeToggle";
 import HoldingVehicleStage from "@/components/holding/HoldingVehicleStage";
+import { pageContainerClassName } from "@/components/Shared";
 
 type SearchMode = "part" | "vin" | "vehicle";
 
@@ -171,38 +171,62 @@ const publicAssetPath = (path: string) =>
 const products = [
   {
     title: "Brembo 256mm Ventilated Front Disc",
+    partname: "Clutch bearing",
     fit: "VW Polo, Vento, Skoda Rapid · 1.2 TSI / 1.6 MPI",
     price: "₹3,450",
     part: "09.7011.14",
     stock: "14 in stock",
-    type: "OEM / OES",
+    type: "OE",
+    brand: "LUK",
+    warranty: "6 mo warranty",
+    cheaperName: "Valeo aftermarket",
+    cheaperPrice: "₹2,890",
+    savings: "₹560",
     image: publicAssetPath("/products/brake-disc.png"),
   },
   {
     title: "Monroe Front Gas Strut Damper",
+    partname: "Front gas strut",
     fit: "Hyundai Creta, Kia Seltos · 2019–2024",
     price: "₹4,890",
     part: "G8164-MN",
     stock: "8 in stock",
-    type: "TIER-1 OEM",
+    type: "OEM",
+    brand: "MONROE",
+    warranty: "12 mo warranty",
+    cheaperName: "Gabriel aftermarket",
+    cheaperPrice: "₹3,990",
+    savings: "₹900",
     image: publicAssetPath("/products/front-struts.png"),
   },
   {
     title: "Bosch Common Rail Injector",
+    partname: "Common rail injector",
     fit: "Tata Nexon 1.5 Revotorq Diesel, Altroz",
     price: "₹8,950",
     part: "0445110-CR",
     stock: "Low stock · 3",
-    type: "GENUINE OES",
+    type: "OES",
+    brand: "BOSCH",
+    warranty: "12 mo warranty",
+    cheaperName: "Delphi aftermarket",
+    cheaperPrice: "₹7,850",
+    savings: "₹1,100",
     image: publicAssetPath("/products/common-rail-injector.png"),
   },
   {
     title: "Gates PowerGrip Timing Kit + Pump",
+    partname: "Timing kit",
     fit: "Maruti Suzuki Swift, Baleno, Dzire · K-Series",
     price: "₹5,120",
     part: "KP15669XS",
     stock: "19 in stock",
-    type: "TIER-1 KIT",
+    type: "OE",
+    brand: "GATES",
+    warranty: "6 mo warranty",
+    cheaperName: "INA aftermarket",
+    cheaperPrice: "₹4,240",
+    savings: "₹880",
     image: publicAssetPath("/products/timing-kit.png"),
   },
 ];
@@ -253,6 +277,8 @@ export default function SpareLabLandingPage() {
   const [searchQuery, setSearchQuery] = useState(
     "#6R0615301 Ventilated Front Brake Disc",
   );
+  const [productQuantities, setProductQuantities] = useState<Record<string, number>>({});
+  const [addedProducts, setAddedProducts] = useState<Record<string, boolean>>({});
   const [searchMessage, setSearchMessage] = useState("");
   const [acceptedQuote, setAcceptedQuote] = useState(false);
   const [message, setMessage] = useState("");
@@ -287,7 +313,6 @@ export default function SpareLabLandingPage() {
     <>
       <div className="page-backdrop" aria-hidden="true" />
       <main id="top">
-        <ScrollTransitions />
         <header className="site-header">
           <div className="nav-shell">
             <Wordmark />
@@ -331,7 +356,7 @@ export default function SpareLabLandingPage() {
           </div>
         </header>
 
-        <section className="hero section-wrap">
+        <section className={`hero ${pageContainerClassName}`}>
           <div className="hero-copy">
             <div className="hero-eyebrow">
               <span className="live-dot" />
@@ -403,7 +428,7 @@ export default function SpareLabLandingPage() {
           data-cinematic-section
           aria-label="Sparelab network at a glance"
         >
-          <div className="stats-inner">
+          <div className={`${pageContainerClassName} stats-inner`}>
             <div className="stats-grid">
               <div className="stat">
                 <strong>
@@ -440,7 +465,7 @@ export default function SpareLabLandingPage() {
           data-cinematic-section
           aria-label="Supported automotive brands"
         >
-          <div className="section-wrap brands-inner">
+          <div className={`${pageContainerClassName} brands-inner`}>
             <div className="brands-pill">
               <p className="brands-eyebrow">
                 <span className="eyebrow-dot" />
@@ -477,7 +502,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="trust-section section-wrap cinematic-section"
+          className={`trust-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
         >
           <SectionHeading
@@ -556,7 +581,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="search-section section-wrap cinematic-section"
+          className={`search-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
           id="services"
         >
@@ -656,7 +681,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="products-section section-wrap cinematic-section"
+          className={`products-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
           id="featured"
         >
@@ -679,34 +704,109 @@ export default function SpareLabLandingPage() {
           <div className="product-grid">
             {products.map((product) => (
               <article className="product-card" key={product.part}>
-                <div className="product-image">
+                <div className="product-card__image">
+                  <span className="stock-tag">
+                    <span className="stock-dot" /> In stock · same day
+                  </span>
                   <img src={product.image} alt={product.title} loading="lazy" />
-                  <span className="stock-tag">{product.stock}</span>
-                  <span className="type-tag">{product.type}</span>
+                  <span className="product-page-count">1 / 2</span>
                 </div>
-                <div className="product-info">
-                  <span className="part-number">PART # {product.part}</span>
-                  <h3>{product.title}</h3>
-                  <p>{product.fit}</p>
-                  <span className="vin-badge">
-                    <Check size={12} /> 100% VIN match guaranteed
-                  </span>
-                </div>
-                <div className="product-footer">
-                  <span>
-                    <small>Escrow rate</small>
-                    <strong>{product.price}</strong>
-                  </span>
+                <div className="product-card__body">
+                  <div className="product-card__header">
+                    <div className="product-card__title-wrap">
+                      <h3>{product.partname}</h3>
+                      <div className="product-card__badges">
+                        <span className="brand-badge">{product.brand}</span>
+                        <span className="type-badge">{product.type}</span>
+                        <span className="warranty-badge">{product.warranty}</span>
+                      </div>
+                    </div>
+                    <div className="product-card__price">
+                      <strong>{product.price}</strong>
+                      <small>{product.price} each</small>
+                    </div>
+                  </div>
+
+                  <div className="product-card__specs">
+                    <div>
+                      <small>Part no</small>
+                      <strong>{product.part}</strong>
+                    </div>
+                    <div>
+                      <small>Fits</small>
+                      <strong>{product.fit.split(" · ")[0]}</strong>
+                    </div>
+                    <div>
+                      <small>Lead time</small>
+                      <strong>Same day</strong>
+                    </div>
+                  </div>
+
+                  <div className="product-card__quantity">
+                    <strong>Quantity</strong>
+                    <div className="quantity-control">
+                      <button
+                        type="button"
+                        aria-label={`Decrease ${product.partname} quantity`}
+                        onClick={() =>
+                          setProductQuantities((current) => ({
+                            ...current,
+                            [product.part]: Math.max(
+                              1,
+                              (current[product.part] ?? 1) - 1,
+                            ),
+                          }))
+                        }
+                      >
+                        −
+                      </button>
+                      <span>{productQuantities[product.part] ?? 1}</span>
+                      <button
+                        type="button"
+                        aria-label={`Increase ${product.partname} quantity`}
+                        onClick={() =>
+                          setProductQuantities((current) => ({
+                            ...current,
+                            [product.part]: (current[product.part] ?? 1) + 1,
+                          }))
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="cheaper-option">
+                    <div>
+                      <strong>Cheaper option · save {product.savings}</strong>
+                      <span>{product.cheaperName} · {product.cheaperPrice} · Neha Ramiah</span>
+                    </div>
+                    <b>View ›</b>
+                  </div>
+
                   <button
-                    onClick={() => {
-                      setSearchQuery(product.part);
-                      setSearchMessage(`Request started for ${product.part}`);
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
+                    type="button"
+                    className="product-card__action"
+                    data-added={Boolean(addedProducts[product.part])}
+                    onClick={() =>
+                      setAddedProducts((current) => ({
+                        ...current,
+                        [product.part]: !current[product.part],
+                      }))
+                    }
                   >
-                    Request / Buy <ArrowRight size={13} />
+                    {addedProducts[product.part] ? (
+                      <>
+                        <Check size={17} strokeWidth={3} />
+                        <strong>Added to order</strong>
+                        <span>· tap to remove</span>
+                      </>
+                    ) : (
+                      <>
+                        <strong>Add to order</strong>
+                        <span>· {product.price}</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </article>
@@ -715,7 +815,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="workflow-section section-wrap cinematic-section"
+          className={`workflow-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
           id="workflow"
         >
@@ -811,7 +911,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="telemetry-section section-wrap cinematic-section"
+          className={`telemetry-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
         >
           <SectionHeading
@@ -973,7 +1073,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="categories-section section-wrap cinematic-section"
+          className={`categories-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
         >
           <SectionHeading
@@ -996,7 +1096,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className="conversion-section section-wrap cinematic-section"
+          className={`conversion-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
         >
           <article
@@ -1116,7 +1216,7 @@ export default function SpareLabLandingPage() {
         </section>
 
         <footer className="site-footer" data-cinematic-static id="footer">
-          <div className="footer-inner">
+          <div className={`${pageContainerClassName} footer-inner`}>
             <div className="footer-main">
               <div className="footer-brand">
                 <Wordmark footer />
