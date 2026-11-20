@@ -40,16 +40,19 @@ export default function ScrollTransitions() {
             .fromTo(
               section,
               {
-                scale: compact ? 0.96 : 0.89,
-                y: compact ? 24 : 54,
-                z: compact ? 0 : -110,
-                opacity: compact ? 0.76 : 0.64,
+                scale: compact ? 0.98 : 1,
+                y: compact ? 30 : 72,
+                z: compact ? 0 : -150,
+                rotationX: compact ? 3 : 9,
+                transformPerspective: compact ? 1000 : 1100,
+                opacity: 0.96,
                 transformOrigin: "center center",
               },
               {
-                scale: 1,
+                scale: compact ? 1.04 : 1.1,
                 y: 0,
                 z: 0,
+                rotationX: 0,
                 opacity: 1,
                 ease: "none",
                 duration: 0.5,
@@ -57,10 +60,11 @@ export default function ScrollTransitions() {
               },
             )
             .to(section, {
-              scale: compact ? 0.96 : 0.89,
-              y: compact ? -18 : -42,
-              z: compact ? 0 : -110,
-              opacity: compact ? 0.76 : 0.58,
+              scale: compact ? 0.98 : 1,
+              y: compact ? -24 : -64,
+              z: compact ? 0 : -150,
+              rotationX: compact ? -3 : -9,
+              opacity: 0.96,
               ease: "none",
               duration: 0.5,
             });
