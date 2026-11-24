@@ -48,6 +48,7 @@ import {
 } from "simple-icons";
 import ThemeToggle from "@/components/ThemeToggle";
 import HoldingVehicleStage from "@/components/holding/HoldingVehicleStage";
+import ScrollTransitions from "@/components/ScrollTransitions";
 import { pageContainerClassName } from "@/components/Shared";
 
 type SearchMode = "part" | "vin" | "vehicle";
@@ -311,6 +312,7 @@ export default function SpareLabLandingPage() {
 
   return (
     <>
+      <ScrollTransitions />
       <div className="page-backdrop" aria-hidden="true" />
       <main id="top">
         <header className="site-header">

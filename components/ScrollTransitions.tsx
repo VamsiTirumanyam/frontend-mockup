@@ -15,8 +15,10 @@ export default function ScrollTransitions() {
 
     media.add(
       {
-        desktop: "(min-width: 769px) and (prefers-reduced-motion: no-preference)",
-        compact: "(max-width: 768px) and (prefers-reduced-motion: no-preference)",
+        desktop:
+          "(min-width: 769px) and (prefers-reduced-motion: no-preference)",
+        compact:
+          "(max-width: 768px) and (prefers-reduced-motion: no-preference)",
       },
       (context) => {
         const compact = context.conditions?.compact ?? false;
@@ -67,7 +69,9 @@ export default function ScrollTransitions() {
         });
 
         return () => {
-          sections.forEach((section) => gsap.set(section, { clearProps: "zIndex" }));
+          sections.forEach((section) =>
+            gsap.set(section, { clearProps: "zIndex" }),
+          );
         };
       },
     );
