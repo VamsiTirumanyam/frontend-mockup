@@ -33,7 +33,7 @@ export default function ConversionFooter() {
             </ul>
             <h3 className="vendor-onboarding-title">Become a Sparelab vendor</h3>
             <ol className="vendor-onboarding"><li><span>1</span> Write to us with your business details and brands stocked.</li><li><span>2</span> Our team verifies your business, GST, authorisations, and references.</li><li><span>3</span> Upload your inventory and start receiving RFQs.</li></ol>
-            <a href="#" className="button button--primary" target="_blank" rel="noreferrer">Become a Sparelab vendor <ArrowRight size={16} /></a>
+            <a href="https://dev.sparelab.co.in/register?type=vendor" className="button button--primary" target="_blank" rel="noreferrer">Become a Sparelab vendor <ArrowRight size={16} /></a>
             <p className="vendor-contact">Sign up in minutes — our procurement team reviews your business before you go live. <a href="mailto:hello@sparelab.co.in?subject=Vendor%20onboarding%20on%20Sparelab">Prefer to talk first? Write to hello@sparelab.co.in</a></p>
           </div>
         </article>
