@@ -1,7 +1,53 @@
 "use client";
 
-import { siBmw, siHonda, siHyundai, siKia, siMahindra, siMg, siRenault, siSkoda, siSuzuki, siTata, siToyota, siVolkswagen } from "simple-icons";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  siBmw,
+  siHonda,
+  siHyundai,
+  siKia,
+  siMahindra,
+  siMg,
+  siRenault,
+  siSkoda,
+  siSuzuki,
+  siTata,
+  siToyota,
+  siVolkswagen,
+} from "simple-icons";
 import { pageContainerClassName } from "./Shared";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const stats = [
+  {
+    value: 120,
+    suffix: "+",
+    title: "Verified Vendors",
+    description: "Direct Tier-1 & authorised suppliers",
+  },
+  {
+    value: 24,
+    suffix: "",
+    title: "Cities Served",
+    description: "Expanding across major metro hubs",
+  },
+  {
+    value: 15000,
+    suffix: "+",
+    title: "Parts in Catalogue",
+    description: "Verified with 100% VIN fitment guarantee",
+  },
+  {
+    value: 98,
+    suffix: "%",
+    title: "On-Time Fulfilment",
+    description: "Sub-4 hour bay arrival rate",
+  },
+];
 
 const brands = [
   { name: "Maruti Suzuki", icon: siSuzuki },
@@ -12,26 +58,67 @@ const brands = [
   { name: "Volkswagen", icon: siVolkswagen },
   { name: "Honda", icon: siHonda },
   { name: "Kia", icon: siKia },
-  { name: "Skoda", icon: siSkoda },
+  { name: "Škoda", icon: siSkoda },
   { name: "Renault", icon: siRenault },
   { name: "MG", icon: siMg },
   { name: "BMW", icon: siBmw },
 ];
 
 export default function StatsBrandsSection() {
+  const statsRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const section = statsRef.current;
+      if (
+        !section ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
+
+      section.querySelectorAll<HTMLElement>("[data-counter]").forEach((element) => {
+        const target = Number(element.dataset.counter);
+        const counter = { value: 0 };
+        element.textContent = "0";
+
+        gsap.to(counter, {
+          value: target,
+          duration: 1.6,
+          ease: "power2.out",
+          snap: { value: 1 },
+          onUpdate: () => {
+            element.textContent = Math.round(counter.value).toLocaleString("en-US");
+          },
+          scrollTrigger: {
+            trigger: section,
+            start: "top 82%",
+            once: true,
+          },
+        });
+      });
+    },
+    { scope: statsRef },
+  );
+
   return (
     <>
-      <section className="stats-section cinematic-section" data-cinematic-section aria-label="Sparelab network at a glance">
+      <section
+        ref={statsRef}
+        className="stats-section cinematic-section"
+        data-cinematic-section
+        aria-label="Sparelab network at a glance"
+      >
         <div className={`${pageContainerClassName} stats-inner`}>
           <div className="stats-grid">
-            {[
-              ["120", "+", "Verified Vendors", "Direct Tier-1 & authorized suppliers"],
-              ["24", "", "Cities Served", "Expanding across major metro hubs"],
-              ["15,000", "+", "Parts in Catalogue", "Verified with 100% VIN fitment guarantee"],
-              ["98", "%", "On-Time Fulfilment", "Sub-4 hour bay arrival rate"],
-            ].map(([value, suffix, title, description]) => (
+            {stats.map(({ value, suffix, title, description }) => (
               <div className="stat" key={title}>
-                <strong>{value}<span>{suffix}</span></strong>
+                <strong aria-label={`${value.toLocaleString("en-US")}${suffix}`}>
+                  <span data-counter={value}>
+                    {value.toLocaleString("en-US")}
+                  </span>
+                  <span aria-hidden="true">{suffix}</span>
+                </strong>
                 <h3>{title}</h3>
                 <p>{description}</p>
               </div>
@@ -39,20 +126,39 @@ export default function StatsBrandsSection() {
           </div>
         </div>
       </section>
-      <section className="brands-section cinematic-section" data-cinematic-section aria-label="Supported automotive brands">
+      <section
+        className="brands-section cinematic-section"
+        data-cinematic-section
+        aria-label="Supported automotive brands"
+      >
         <div className={`${pageContainerClassName} brands-inner`}>
           <div className="brands-pill">
             <p className="brands-eyebrow">
-              <span className="eyebrow-dot" /> Supported vehicle brands & OEM networks
-              <span className="brands-divider">·</span> 100% VIN fitment across 45,000+ models
+              <span className="eyebrow-dot" />
+              Supported vehicle brands & OEM networks
+              <span className="brands-divider">·</span>
+              100% VIN fitment across 45,000+ models
             </p>
             <div className="brands-marquee" aria-label="Supported vehicle brands">
               <div className="brands-track">
                 {[0, 1].map((repeat) => (
-                  <div className="brands-list" key={repeat} aria-hidden={repeat === 1}>
+                  <div
+                    className="brands-list"
+                    key={repeat}
+                    aria-hidden={repeat === 1}
+                  >
                     {brands.map(({ name, icon }) => (
-                      <span className="brand-logo" key={`${repeat}-${name}`} role="img" aria-label={repeat === 0 ? name : undefined} title={name}>
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d={icon.path} /></svg>
+                      <span
+                        className="brand-logo"
+                        key={`${repeat}-${name}`}
+                        role="img"
+                        aria-label={repeat === 0 ? name : undefined}
+                        title={name}
+                        style={{ color: `#${icon.hex}` }}
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d={icon.path} />
+                        </svg>
                       </span>
                     ))}
                   </div>

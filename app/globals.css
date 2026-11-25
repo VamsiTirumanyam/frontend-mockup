@@ -672,7 +672,6 @@ html[data-theme="dark"] .review-avatar { color: #e0b7f0; background: rgb(93 37 1
 html[data-theme="dark"] .reviews-heading { border-color: var(--line); }
 html[data-theme="dark"] .brands-pill { border-color: var(--line); background: var(--surface); box-shadow: 0 8px 24px rgb(0 0 0 / 13%); }
 html[data-theme="dark"] .brands-eyebrow { color: #a99caf; }
-html[data-theme="dark"] .brand-logo { color: #ddd4e1; }
 html[data-theme="dark"] .card-tag, html[data-theme="dark"] .quick-filters > button { color: #bdb1c2; background: rgb(255 255 255 / 6%); }
 html[data-theme="dark"] .trust-banner p { color: var(--muted); }
 html[data-theme="dark"] .trust-banner p strong { color: var(--ink); }

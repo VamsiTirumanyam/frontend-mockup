@@ -32,41 +32,17 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
-import {
-  siBmw,
-  siHonda,
-  siHyundai,
-  siKia,
-  siMahindra,
-  siMg,
-  siRenault,
-  siSkoda,
-  siSuzuki,
-  siTata,
-  siToyota,
-  siVolkswagen,
-} from "simple-icons";
-import ThemeToggle from "@/components/ThemeToggle";
 import HoldingVehicleStage from "@/components/holding/HoldingVehicleStage";
 import ScrollTransitions from "@/components/ScrollTransitions";
-import { pageContainerClassName } from "@/components/Shared";
+import StatsBrandsSection from "@/components/StatsBrandsSection";
+import ThemeToggle from "@/components/ThemeToggle";
+import {
+  pageContainerClassName,
+  SectionHeading,
+  Wordmark,
+} from "@/components/Shared";
 
 type SearchMode = "part" | "vin" | "vehicle";
-
-const brands = [
-  { name: "Maruti Suzuki", icon: siSuzuki },
-  { name: "Tata Motors", icon: siTata },
-  { name: "Mahindra", icon: siMahindra },
-  { name: "Toyota", icon: siToyota },
-  { name: "Hyundai", icon: siHyundai },
-  { name: "Volkswagen", icon: siVolkswagen },
-  { name: "Honda", icon: siHonda },
-  { name: "Kia", icon: siKia },
-  { name: "Škoda", icon: siSkoda },
-  { name: "Renault", icon: siRenault },
-  { name: "MG", icon: siMg },
-  { name: "BMW", icon: siBmw },
-];
 
 const workflow: {
   number: string;
@@ -232,47 +208,6 @@ const products = [
   },
 ];
 
-function Wordmark({ footer = false }: { footer?: boolean }) {
-  return (
-    <a
-      className={`wordmark${footer ? " wordmark--footer" : ""}`}
-      href="#top"
-      aria-label="SpareLab home"
-    >
-      <span className="brand-icon">
-        <Wrench size={19} strokeWidth={2.2} />
-      </span>
-      <span className="brand-copy">
-        <span className="brand-name">
-          Spare<span>Lab</span>
-        </span>
-        <span className="brand-tagline">Automotive procurement platform</span>
-      </span>
-    </a>
-  );
-}
-
-function SectionHeading({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string;
-  title: React.ReactNode;
-  description?: string;
-}) {
-  return (
-    <div className="section-heading">
-      <span className="eyebrow">
-        <span className="eyebrow-dot" />
-        {eyebrow}
-      </span>
-      <h2>{title}</h2>
-      {description && <p>{description}</p>}
-    </div>
-  );
-}
-
 export default function SpareLabLandingPage() {
   const [activeTab, setActiveTab] = useState<SearchMode>("part");
   const [searchQuery, setSearchQuery] = useState(
@@ -425,83 +360,7 @@ export default function SpareLabLandingPage() {
           </div>
         </section>
 
-        <section
-          className="stats-section cinematic-section"
-          data-cinematic-section
-          aria-label="Sparelab network at a glance"
-        >
-          <div className={`${pageContainerClassName} stats-inner`}>
-            <div className="stats-grid">
-              <div className="stat">
-                <strong>
-                  120<span>+</span>
-                </strong>
-                <h3>Verified Vendors</h3>
-                <p>Direct Tier-1 & authorized suppliers</p>
-              </div>
-              <div className="stat">
-                <strong>24</strong>
-                <h3>Cities Served</h3>
-                <p>Expanding across major metro hubs</p>
-              </div>
-              <div className="stat">
-                <strong>
-                  15,000<span>+</span>
-                </strong>
-                <h3>Parts in Catalogue</h3>
-                <p>Verified with 100% VIN fitment guarantee</p>
-              </div>
-              <div className="stat">
-                <strong>
-                  98<span>%</span>
-                </strong>
-                <h3>On-Time Fulfilment</h3>
-                <p>Sub-4 hour bay arrival rate</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          className="brands-section cinematic-section"
-          data-cinematic-section
-          aria-label="Supported automotive brands"
-        >
-          <div className={`${pageContainerClassName} brands-inner`}>
-            <div className="brands-pill">
-              <p className="brands-eyebrow">
-                <span className="eyebrow-dot" />
-                Supported vehicle brands & OEM networks
-                <span className="brands-divider">·</span>
-                100% VIN fitment across 45,000+ models
-              </p>
-              <div className="brands-marquee" aria-label="Supported vehicle brands">
-                <div className="brands-track">
-                  {[0, 1].map((repeat) => (
-                    <div className="brands-list" key={repeat} aria-hidden={repeat === 1}>
-                      {brands.map(({ name, icon }) => (
-                        <span
-                          className="brand-logo"
-                          key={`${repeat}-${name}`}
-                          role="img"
-                          aria-label={repeat === 0 ? name : undefined}
-                          title={name}
-                        >
-                          <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
-                            <path d={icon.path} />
-                          </svg>
-                        </span>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <StatsBrandsSection />
 
         <section
           className={`trust-section ${pageContainerClassName} cinematic-section`}
