@@ -139,9 +139,10 @@ main { position: relative; z-index: 1; }
 .stat > strong span { font-size: .75em; }
 .stat h3 { min-width: 0; margin: 0 0 3px; color: #3b1c5a; font-size: 10px; letter-spacing: .55px; text-transform: uppercase; }
 .stat p { min-width: 0; margin: 0; color: #7c7180; font-size: 9px; line-height: 1.4; }
-.oe-promise-card { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 35px; padding: clamp(24px, 4vw, 42px); border: 1px solid #e7dceb; border-radius: 20px; background: linear-gradient(130deg, #fff 10%, #f8f2fb 100%); box-shadow: 0 12px 35px rgb(52 25 62 / 5%); }
+.oe-promise-section { padding-block: 36px 58px; }
+.oe-promise-card { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 35px; padding: clamp(24px, 4vw, 42px); border: 1px solid #e7dceb; border-radius: 20px; background: linear-gradient(130deg, #fff 10%, #f8f2fb 100%); box-shadow: 0 12px 35px rgb(52 25 62 / 5%); transform-origin: center center; will-change: transform, opacity; }
 .oe-promise-copy .eyebrow { margin-bottom: 10px; }
-.oe-promise-copy h2 { margin: 0 0 11px; color: var(--ink); font-size: clamp(30px, 4vw, 45px); letter-spacing: -1.8px; }
+.oe-promise-copy h1 { margin: 0 0 11px; color: var(--ink); font-size: clamp(34px, 4.6vw, 52px); line-height: 1.08; letter-spacing: -1.8px; font-weight: 850; }
 .oe-promise-copy .oe-promise-subtitle { margin: -5px 0 12px; color: #6d248b; font-size: clamp(15px, 1.8vw, 20px); letter-spacing: -.4px; }
 .oe-promise-copy > p { max-width: 710px; margin: 0; color: #716779; font-size: 12px; line-height: 1.85; }
 .oe-promise-copy > p strong { color: #6d248b; }
@@ -453,7 +454,9 @@ main { position: relative; z-index: 1; }
   .stats-grid { min-width: 650px; }
   .stat { padding-inline: 12px; }
   .stat > strong { font-size: 27px; }
+  .oe-promise-section { padding-block: 42px 44px; }
   .oe-promise-card { grid-template-columns: 1fr; gap: 20px; }
+  .oe-promise-copy h1 { font-size: clamp(32px, 9vw, 44px); letter-spacing: -1.4px; }
   .reviews-grid { grid-template-columns: 1fr; }
   .review-card { padding: 17px; }
   .brands-section { padding-bottom: 30px; }
@@ -655,7 +658,7 @@ html[data-theme="dark"] .oe-promise-card {
   background: linear-gradient(130deg, rgb(29 17 35 / 96%), rgb(39 21 47 / 94%));
   box-shadow: 0 14px 38px rgb(0 0 0 / 18%);
 }
-html[data-theme="dark"] .oe-promise-copy h2 { color: var(--ink); }
+html[data-theme="dark"] .oe-promise-copy h1 { color: var(--ink); }
 html[data-theme="dark"] .oe-promise-copy .oe-promise-subtitle { color: #d7a4ec; }
 html[data-theme="dark"] .oe-promise-copy > p { color: #c3b6c8; }
 html[data-theme="dark"] .oe-promise-copy > p strong { color: #dfa8f1; }

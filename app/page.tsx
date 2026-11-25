@@ -817,17 +817,17 @@ export default function SpareLabLandingPage() {
         </section>
 
         <section
-          className={`workflow-section ${pageContainerClassName} cinematic-section`}
+          className={`oe-promise-section ${pageContainerClassName} cinematic-section`}
           data-cinematic-section
-          id="workflow"
+          id="about"
         >
-          <div className="oe-promise-card" id="about">
+          <div className="oe-promise-card" data-oe-promise>
             <div className="oe-promise-copy">
               <span className="eyebrow">
                 <span className="eyebrow-dot" />
                 About Sparelab
               </span>
-              <h2>OE first, always.</h2>
+              <h1>OE first, always.</h1>
               <h3 className="oe-promise-subtitle">
                 The part your vehicle left the factory with.
               </h3>
@@ -855,6 +855,13 @@ export default function SpareLabLandingPage() {
               </li>
             </ul>
           </div>
+        </section>
+
+        <section
+          className={`workflow-section ${pageContainerClassName} cinematic-section`}
+          data-cinematic-section
+          id="workflow"
+        >
           <div className="workflow-heading">
             <span className="eyebrow">
               <span className="eyebrow-dot" />
