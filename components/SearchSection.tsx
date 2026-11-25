@@ -21,7 +21,7 @@ export default function SearchSection() {
     event.preventDefault();
     setSearchMessage(
       searchQuery.trim()
-        ? `Showing verified matches for "${searchQuery.trim()}"`
+        ? `Showing verified matches for “${searchQuery.trim()}”`
         : "Enter a part, VIN, or vehicle to search the network.",
     );
   }
