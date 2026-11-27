@@ -26,12 +26,11 @@ export default function Header() {
         >
           <a href="#services" onClick={() => setMenuOpen(false)}>Products & Services</a>
           <a href="#workflow" onClick={() => setMenuOpen(false)}>How It Works</a>
-          {/* <a href="#customers" onClick={() => setMenuOpen(false)}>For Customers</a> */}
           <a href="#vendors" onClick={() => setMenuOpen(false)}>For Vendors</a>
         </nav>
         <div className="nav-actions">
           <a className="sign-in" href="#footer">Sign In</a>
-          <a className="button button--primary button--nav" href="#customers">
+          <a className="button button--primary button--nav" href="#vendors">
             Get Started <span className="avatar-icon">↗</span>
           </a>
           <ThemeToggle />

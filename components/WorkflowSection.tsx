@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Check, CheckCircle2, ClipboardCheck, LockKeyhole, Search, Truck, Zap } from "lucide-react";
+import { Activity, Check, ClipboardCheck, LockKeyhole, Search, Truck, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { pageContainerClassName } from "./Shared";
 
@@ -22,25 +22,12 @@ const testimonials = [
 export default function WorkflowSection() {
   return (
     <section className={`workflow-section ${pageContainerClassName} cinematic-section`} data-cinematic-section id="workflow">
-      <div className="oe-promise-card" id="about">
-        <div className="oe-promise-copy">
-          <span className="eyebrow"><span className="eyebrow-dot" /> About Sparelab</span>
-          <h2>OE first, always.</h2>
-          <h3 className="oe-promise-subtitle">The part your vehicle left the factory with.</h3>
-          <p>Every vehicle is built with Original Equipment — parts engineered for that exact model. The aftermarket is a maze of look-alikes, and the wrong part costs you twice: once to buy it, and again when it fails. Sparelab exists so you never have to gamble. We source <strong>Genuine OE parts first</strong>, from authorised, verified vendors, and we tell you exactly what you're getting — OE, OEM or OES — on every quote.</p>
-        </div>
-        <ul className="oe-promise-points">
-          <li><CheckCircle2 size={17} /> Classification declared on every quote</li>
-          <li><CheckCircle2 size={17} /> Verified, authorised vendors only</li>
-          <li><CheckCircle2 size={17} /> Fitment checked against your exact trim</li>
-        </ul>
-      </div>
       <div className="workflow-heading">
         <span className="eyebrow"><span className="eyebrow-dot" /> The Sparelab process</span>
         <h2>From enquiry to delivery <span>in six steps.</span></h2>
         <p>A clear journey from your first request to the right part at your workshop or fleet yard.</p>
       </div>
-      <div className="workflow-grid">
+      <div className="workflow-grid grid grid-cols-3 gap-[13px] max-[760px]:grid-cols-2 max-[520px]:grid-cols-1 max-[520px]:gap-[10px]">
         {workflow.map(({ number, title, description, note, icon: Icon }) => (
           <article key={number} className="workflow-card">
             <div className="workflow-card-head"><span className="step-number">{number}</span><Icon size={20} /></div>
@@ -50,7 +37,7 @@ export default function WorkflowSection() {
         ))}
       </div>
       <div className="reviews-heading"><span className="eyebrow"><span className="eyebrow-dot" /> What buyers and sellers say</span><h2>Trusted on both sides of every order.</h2></div>
-      <div className="reviews-grid">
+      <div className="reviews-grid grid grid-cols-3 gap-[13px] max-[760px]:grid-cols-1">
         {testimonials.map(({ quote, name, role, initials }) => (
           <article className="review-card" key={name}>
             <div className="review-stars" aria-label="5 out of 5 stars">★★★★★</div>

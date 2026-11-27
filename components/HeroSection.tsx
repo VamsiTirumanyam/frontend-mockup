@@ -9,8 +9,8 @@ export default function HeroSection() {
   const [activeHeroCategory, setActiveHeroCategory] = useState("parts");
 
   return (
-    <section className={`hero ${pageContainerClassName}`}>
-      <div className="hero-copy">
+    <section className={`hero ${pageContainerClassName} grid min-h-[558px] grid-cols-[1.06fr_0.94fr] items-center gap-[clamp(35px,6vw,76px)] pt-[70px] pb-[66px] max-[1050px]:grid-cols-[1fr_0.9fr] max-[1050px]:gap-8 max-[1050px]:py-[57px] min-[1500px]:pt-[82px] min-[1500px]:pb-[76px] max-[760px]:min-h-[auto] max-[760px]:grid-cols-1 max-[760px]:gap-[35px] max-[760px]:pt-[47px] max-[760px]:pb-[46px] max-[520px]:gap-[27px] max-[520px]:pt-[38px] max-[520px]:pb-[37px]`}>
+      <div className="hero-copy relative z-[1]">
         <div className="hero-eyebrow">
           <span className="live-dot" />
           Genuine OE parts first <span className="eyebrow-divider">•</span> ISO 9001 sourced
@@ -46,7 +46,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="hero-car-display">
+      <div className="hero-car-display min-w-0">
         <HoldingVehicleStage activeCategory={activeHeroCategory} onSelect={setActiveHeroCategory} />
       </div>
     </section>

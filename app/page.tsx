@@ -1,7 +1,9 @@
 import CategoriesSection from "@/components/CategoriesSection";
+import BackToTop from "@/components/BackToTop";
 import ConversionFooter from "@/components/ConversionFooter";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import OEPromiseSection from "@/components/OEPromiseSection";
 import ProductsSection from "@/components/ProductsSection";
 import ScrollTransitions from "@/components/ScrollTransitions";
 import SearchSection from "@/components/SearchSection";
@@ -22,11 +24,13 @@ export default function SpareLabLandingPage() {
         <TrustSection />
         <SearchSection />
         <ProductsSection />
+        <OEPromiseSection />
         <WorkflowSection />
         <TelemetrySection />
         <CategoriesSection />
         <ConversionFooter />
       </main>
+      <BackToTop />
     </>
   );
 }

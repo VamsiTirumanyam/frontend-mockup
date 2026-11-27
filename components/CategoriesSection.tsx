@@ -21,7 +21,7 @@ export default function CategoriesSection() {
   return (
     <section className={`categories-section ${pageContainerClassName} cinematic-section`} data-cinematic-section>
       <SectionHeading eyebrow="Catalog architecture" title="Core automotive categories" description="Blueprinted OEM/OES components organized across 10 specialized functional domains." />
-      <div className="category-grid">{categories.map(({ title, count, icon: Icon }) => <a key={title} className="category-card" href="#featured"><span className="category-icon"><Icon size={21} strokeWidth={1.7} /></span><strong>{title}</strong><small>{count}</small><ArrowUpRight className="category-arrow" size={14} /></a>)}</div>
+      <div className="category-grid grid grid-cols-5 gap-[10px] max-[760px]:grid-cols-3 max-[520px]:grid-cols-2 max-[520px]:gap-2">{categories.map(({ title, count, icon: Icon }) => <a key={title} className="category-card" href="#featured"><span className="category-icon"><Icon size={21} strokeWidth={1.7} /></span><strong>{title}</strong><small>{count}</small><ArrowUpRight className="category-arrow" size={14} /></a>)}</div>
     </section>
   );
 }
