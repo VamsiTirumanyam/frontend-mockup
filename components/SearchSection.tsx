@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, ChevronDown, Search, X } from "lucide-react";
+import { ArrowRight, Search, X } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { pageContainerClassName } from "./Shared";
 
@@ -37,9 +37,8 @@ export default function SearchSection() {
               </button>
             ))}
           </div>
-          <div className="vehicle-target"><span>Targeting:</span><strong>VW Polo GT 1.2 TSI</strong><ChevronDown size={14} /></div>
         </div>
-        <form className="search-form" onSubmit={submit}>
+        <form className="search-form mt-[15px] flex gap-[9px] max-[520px]:flex-col" onSubmit={submit}>
           <div className="search-field">
             <Search size={19} />
             <input aria-label="Search parts network" placeholder={placeholders[activeTab]} value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />

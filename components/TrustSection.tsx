@@ -13,7 +13,7 @@ export default function TrustSection() {
   return (
     <section className={`trust-section ${pageContainerClassName} cinematic-section`} data-cinematic-section>
       <SectionHeading eyebrow="Your data. Your business. Protected." title={<>Customer and business data.<br className="desktop-break" /> <span>Safe, secure, and encrypted in the cloud.</span></>} description="In an industry built on trust, SpareLab protects sensitive vehicle records, confidential garage-vendor negotiations, quotes, and customer communications." />
-      <div className="trust-grid">
+      <div className="trust-grid grid grid-cols-3 gap-4 max-[760px]:gap-[10px] max-[520px]:grid-cols-1">
         {cards.map(({ icon: Icon, tag, title, text, assurance }) => (
           <article className="trust-card" key={title}>
             <div className="trust-card-top"><span className="icon-tile"><Icon size={20} /></span><span className="card-tag">{tag}</span></div>
