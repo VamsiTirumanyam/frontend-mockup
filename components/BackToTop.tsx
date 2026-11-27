@@ -26,7 +26,10 @@ export default function BackToTop() {
         const progress =
           scrollableHeight > 0
             ? Math.round(
-                Math.min(100, Math.max(0, window.scrollY / scrollableHeight * 100)),
+                Math.min(
+                  100,
+                  Math.max(0, (window.scrollY / scrollableHeight) * 100),
+                ),
               )
             : 0;
         const visible = window.scrollY > 320;

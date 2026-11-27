@@ -1,21 +1,18 @@
 "use client";
 
 import { CheckCircle2 } from "lucide-react";
-import { pageContainerClassName } from "./Shared";
+import { Eyebrow, pageContainerClassName } from "./Shared";
 
 export default function OEPromiseSection() {
   return (
     <section
-      className={`oe-promise-section ${pageContainerClassName} cinematic-section`}
+      className={`oe-promise-section ${pageContainerClassName} relative z-[1]`}
       data-cinematic-section
       id="about"
     >
       <div className="oe-promise-card" data-oe-promise>
         <div className="oe-promise-copy">
-          <span className="eyebrow">
-            <span className="eyebrow-dot" />
-            About Sparelab
-          </span>
+          <Eyebrow className="mb-2.5">About Sparelab</Eyebrow>
           <h1>OE first, always.</h1>
           <h3 className="oe-promise-subtitle">
             The part your vehicle left the factory with.

@@ -27,4 +27,3 @@ In the repository settings, enable **Pages → Build and deployment → GitHub A
 - `app/globals.css` — brand tokens, responsive layout, and component styles
 - `app/layout.tsx` — root layout and page metadata
 - `components/` — theme provider, toggle, and scroll transitions
-- `tailwind.config.ts` — SpareLab brand color palette

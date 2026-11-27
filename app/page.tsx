@@ -17,7 +17,7 @@ export default function SpareLabLandingPage() {
     <>
       <ScrollTransitions />
       <div className="page-backdrop" aria-hidden="true" />
-      <main id="top">
+      <main id="top" className="relative z-[1]">
         <Header />
         <HeroSection />
         <StatsBrandsSection />

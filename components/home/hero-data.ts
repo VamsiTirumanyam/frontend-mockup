@@ -1,32 +1,32 @@
-import{
+import {
   CarFront,
-  CircleGauge,
+  CircleDot,
   ShieldCheck,
-  Sparkles,
-  Store,
+  Bubbles,
+  Warehouse,
   Truck,
   Wrench,
 } from "lucide-react";
 
-export type HeroCategory={
-  id:string;
-  label:string;
-  icon:typeof Wrench;
-  title:string;
-  highlight:string;
-  description:string;
-  searchPlaceholder:string;
-  primaryLabel:string;
-  primaryHref:string;
+export type HeroCategory = {
+  id: string;
+  label: string;
+  icon: typeof Wrench;
+  title: string;
+  highlight: string;
+  description: string;
+  searchPlaceholder: string;
+  primaryLabel: string;
+  primaryHref: string;
 };
 
-export const heroCategories:HeroCategory[]=[
+export const heroCategories: HeroCategory[] = [
   {
-    id:"parts",
-    label:"Spare Parts",
-    icon:Wrench,
-    title:"Everything your vehicle needs.",
-    highlight:"Closer than you think.",
+    id: "parts",
+    label: "Spare Parts",
+    icon: Wrench,
+    title: "Everything your vehicle needs.",
+    highlight: "Closer than you think.",
     description:
       "Find genuine parts, trusted garages, and automotive services in one unified marketplace.",
     searchPlaceholder: "Search OEM part number, part name, or category...",
@@ -36,7 +36,7 @@ export const heroCategories:HeroCategory[]=[
   {
     id: "garages",
     label: "Nearby Garages",
-    icon: Store,
+    icon: Warehouse,
     title: "Trusted garages.",
     highlight: "Right around the corner.",
     description:
@@ -48,7 +48,7 @@ export const heroCategories:HeroCategory[]=[
   {
     id: "tyres",
     label: "Tyres",
-    icon: CircleGauge,
+    icon: CircleDot,
     title: "The right tyres.",
     highlight: "For every road.",
     description:
@@ -72,7 +72,7 @@ export const heroCategories:HeroCategory[]=[
   {
     id: "wash",
     label: "Car Wash",
-    icon: Sparkles,
+    icon: Bubbles,
     title: "Care that shows.",
     highlight: "Inside and out.",
     description:
