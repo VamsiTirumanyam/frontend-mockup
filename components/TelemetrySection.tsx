@@ -20,7 +20,7 @@ export default function TelemetrySection() {
   return (
     <section className={`telemetry-section ${pageContainerClassName} cinematic-section`} data-cinematic-section>
       <SectionHeading eyebrow="Enterprise telemetry" title="Unified communication & live tracking" description="Operational tools designed for real-time buyer-supplier coordination and quality-audited delivery." />
-      <div className="telemetry-grid">
+      <div className="telemetry-grid grid grid-cols-2 items-stretch gap-[17px] max-[760px]:gap-3 max-[520px]:grid-cols-1">
         <article className="interface-card chat-card">
           <div className="interface-head"><div className="vendor-identity"><span className="vendor-avatar">AT</span><span><strong>Apex Tech Autospares</strong><small>Verified Tier-1 Distro · Bay 4 Node</small></span></div><span className="encrypted-pill"><LockKeyhole size={11} /> Encrypted RFQ</span></div>
           <div className="chat-thread">

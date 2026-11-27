@@ -94,7 +94,7 @@ export default function ProductsSection() {
           View all 180,000+ parts <ArrowRight size={15} />
         </a>
       </div>
-      <div className="product-grid">
+      <div className="product-grid grid grid-cols-4 gap-[13px] max-[760px]:grid-cols-2 max-[520px]:grid-cols-1 max-[520px]:gap-3">
         {products.map((product) => (
           <article className="product-card" key={product.part}>
             <div className="product-card__image">

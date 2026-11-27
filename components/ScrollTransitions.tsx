@@ -23,6 +23,33 @@ export default function ScrollTransitions() {
       (context) => {
         const compact = context.conditions?.compact ?? false;
 
+        gsap.utils.toArray<HTMLElement>("[data-oe-promise]").forEach((card) => {
+          gsap.fromTo(
+            card,
+            {
+              autoAlpha: 0,
+              y: compact ? 36 : 64,
+              scale: compact ? 0.96 : 0.92,
+              rotationX: compact ? 2 : 5,
+              transformPerspective: 1100,
+            },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              rotationX: 0,
+              duration: compact ? 0.75 : 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 82%",
+                end: "top 58%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+        });
+
         sections.forEach((section, index) => {
           const timeline = gsap.timeline({
             scrollTrigger: {

@@ -1,49 +1,49 @@
 "use client";
 
-import { ArrowRight, BadgeCheck, Check, LockKeyhole, MapPin, ShieldCheck, Wrench } from "lucide-react";
+import { ArrowRight, BadgeCheck, Check, LockKeyhole, ShieldCheck, Wrench } from "lucide-react";
 import { pageContainerClassName, Wordmark } from "./Shared";
 
 export default function ConversionFooter() {
   return (
     <>
-      <section className={`conversion-section ${pageContainerClassName} cinematic-section`} data-cinematic-section>
-        <article className="conversion-card conversion-card--customer" id="customers">
-          <div className="conversion-orb" />
-          <div className="conversion-content">
-            <span className="conversion-label"><MapPin size={15} /> For car owners & fleets</span>
-            <h2>Find the right parts.<br />Simplify your procurement.</h2>
-            <p>Eliminate counterfeit risk, get instant fitment confirmation by VIN, and enjoy escrow-backed purchases with door-to-bay dispatch.</p>
-            <ul><li><Check size={14} /> 100% replacement warranty on fitment errors</li><li><Check size={14} /> Direct delivery to a verified repair facility</li><li><Check size={14} /> Transparent, itemized billing</li></ul>
-            <a href="#services" className="button button--primary">Get Started as a Customer <ArrowRight size={16} /></a>
-          </div>
-        </article>
+      <section className={`conversion-section ${pageContainerClassName} cinematic-section grid grid-cols-1 gap-[15px] pb-[74px] max-[760px]:pb-[55px] max-[520px]:gap-[10px]`} data-cinematic-section>
         <article className="conversion-card conversion-card--vendor" id="vendors">
           <div className="conversion-orb" />
           <div className="conversion-content">
-            <span className="conversion-label"><Wrench size={15} /> For suppliers & distributors</span>
-            <h2>Your stock, in front of every serious buyer.</h2>
-            <p>Sparelab connects authorised distributors and verified stockists with workshops, garages, and fleets that need genuine parts — with payments verified before you dispatch.</p>
-            <ul className="vendor-benefits">
-              <li><Check size={14} /> Serious, ready-to-buy demand qualified by the Sparelab team</li>
-              <li><Check size={14} /> List inventory once with a simple spreadsheet; reach buyers across our cities</li>
-              <li><Check size={14} /> Payment verified before an order is confirmed to you</li>
-              <li><Check size={14} /> One professional counterparty: Sparelab handles the buyer relationship</li>
-              <li><Check size={14} /> Structured RFQs include part number, brand, model, and trim</li>
-              <li><Check size={14} /> Verified-vendor badge helps genuine stock stand apart from the grey market</li>
-            </ul>
-            <h3 className="vendor-onboarding-title">Become a Sparelab vendor</h3>
-            <ol className="vendor-onboarding"><li><span>1</span> Write to us with your business details and brands stocked.</li><li><span>2</span> Our team verifies your business, GST, authorisations, and references.</li><li><span>3</span> Upload your inventory and start receiving RFQs.</li></ol>
-            <a href="https://dev.sparelab.co.in/register?type=vendor" className="button button--primary" target="_blank" rel="noreferrer">Become a Sparelab vendor <ArrowRight size={16} /></a>
-            <p className="vendor-contact">Sign up in minutes — our procurement team reviews your business before you go live. <a href="mailto:hello@sparelab.co.in?subject=Vendor%20onboarding%20on%20Sparelab">Prefer to talk first? Write to hello@sparelab.co.in</a></p>
+            <div className="vendor-layout grid grid-cols-[minmax(0,1.45fr)_minmax(280px,0.55fr)] items-stretch gap-[clamp(28px,5vw,64px)] max-[760px]:grid-cols-1 max-[760px]:gap-6">
+              <div className="vendor-main">
+                <span className="conversion-label"><Wrench size={15} /> For suppliers & distributors</span>
+                <h2>Your inventory deserves<br />a better marketplace.</h2>
+                <p className="vendor-intro">Connect your genuine parts inventory with serious workshops, garages, and fleets — through one trusted, professionally managed channel.</p>
+                <ul className="vendor-benefits grid max-w-[700px] grid-cols-2 gap-x-[22px] gap-y-[10px] mt-6 max-[520px]:grid-cols-1 max-[520px]:gap-y-[7px]">
+                  <li><Check size={14} /> Qualified buyers ready to purchase</li>
+                  <li><Check size={14} /> One simple inventory upload</li>
+                  <li><Check size={14} /> Verified payment before dispatch</li>
+                  <li><Check size={14} /> Sparelab manages the relationship</li>
+                  <li><Check size={14} /> Detailed VIN and fitment requests</li>
+                  <li><Check size={14} /> A badge that distinguishes genuine stock</li>
+                </ul>
+              </div>
+              <aside className="vendor-onboarding-panel">
+                <h3 className="vendor-onboarding-title">Become a Sparelab vendor</h3>
+                <ol className="vendor-onboarding">
+                  <li><span>1</span><div><strong>Share your business</strong><small>Tell us your brands and inventory</small></div></li>
+                  <li><span>2</span><div><strong>Complete verification</strong><small>GST, authorisations, and references</small></div></li>
+                  <li><span>3</span><div><strong>Go live</strong><small>Upload stock and receive qualified RFQs</small></div></li>
+                </ol>
+                <a href="https://dev.sparelab.co.in/register?type=vendor" className="button button--primary" target="_blank" rel="noreferrer">Become a Sparelab vendor <ArrowRight size={16} /></a>
+                <p className="vendor-contact">Prefer to talk first? <a href="mailto:hello@sparelab.co.in?subject=Vendor%20onboarding%20on%20Sparelab">hello@sparelab.co.in</a></p>
+              </aside>
+            </div>
           </div>
         </article>
       </section>
       <footer className="site-footer" data-cinematic-static id="footer">
         <div className={`${pageContainerClassName} footer-inner`}>
-          <div className="footer-main">
-            <div className="footer-brand"><Wordmark footer /><p>Sparelab sources genuine OE parts first from verified, authorised vendors, with fitment checked and every quote clearly classified.</p><span><BadgeCheck size={15} /> Genuine OE-first sourcing</span></div>
+          <div className="footer-main grid grid-cols-[1.7fr_repeat(4,1fr)] gap-[30px] pb-[28px] max-[1050px]:gap-[19px] max-[760px]:grid-cols-[1.5fr_repeat(2,1fr)] max-[760px]:gap-y-6 max-[520px]:grid-cols-2 max-[520px]:gap-x-[15px] max-[520px]:gap-y-[23px]">
+            <div className="footer-brand max-[760px]:col-span-3 max-[520px]:col-span-2"><Wordmark footer /><p>Sparelab sources genuine OE parts first from verified, authorised vendors, with fitment checked and every quote clearly classified.</p><span><BadgeCheck size={15} /> Genuine OE-first sourcing</span></div>
             <div className="footer-column"><h3>Product</h3><a href="#featured">OEM Catalogue</a><a href="#services">VIN Match Engine</a><a href="#workflow">Real-Time Tracking</a><a href="#services">B2B Integrations</a></div>
-            <div className="footer-column"><h3>Solutions</h3><a href="#customers">Fleet Operations</a><a href="#vendors">Distributor Network</a><a href="#workflow">Procurement Hubs</a><a href="#customers">Repair Workshops</a></div>
+            <div className="footer-column"><h3>Solutions</h3><a href="#featured">OEM Catalogue</a><a href="#vendors">Distributor Network</a><a href="#workflow">Procurement Hubs</a><a href="#about">About OE-first Sourcing</a></div>
             <div className="footer-column"><h3>Company</h3><a href="#about">About Sparelab</a><a href="#footer">Careers</a><a href="#footer">Press & Media</a><a href="#footer">Contact Sales</a></div>
             <div className="footer-column"><h3>Resources</h3><a href="#workflow">How it works</a><a href="#services">Parts catalogue</a><a href="#footer">Help centre</a><a href="#footer">Trust & Safety</a></div>
           </div>
