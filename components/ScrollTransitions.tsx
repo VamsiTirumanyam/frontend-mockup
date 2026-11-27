@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function ScrollTransitions() {
   useGSAP(() => {
     const sections = gsap.utils.toArray<HTMLElement>(
-      "[data-cinematic-section]:not([data-cinematic-static])",
+      "[data-cinematic-section]",
     );
     const media = gsap.matchMedia();
 
@@ -22,22 +22,20 @@ export default function ScrollTransitions() {
       },
       (context) => {
         const compact = context.conditions?.compact ?? false;
+        const edgeScale = compact ? 0.945 : 0.91;
+        const zoomDuration = 0.4;
 
         gsap.utils.toArray<HTMLElement>("[data-oe-promise]").forEach((card) => {
           gsap.fromTo(
             card,
             {
               autoAlpha: 0,
-              y: compact ? 36 : 64,
-              scale: compact ? 0.96 : 0.92,
-              rotationX: compact ? 2 : 5,
-              transformPerspective: 1100,
+              y: compact ? 24 : 40,
+              force3D: false,
             },
             {
               autoAlpha: 1,
               y: 0,
-              scale: 1,
-              rotationX: 0,
               duration: compact ? 0.75 : 1,
               ease: "power3.out",
               scrollTrigger: {
@@ -55,8 +53,8 @@ export default function ScrollTransitions() {
             scrollTrigger: {
               trigger: section,
               start: "top bottom",
-              end: "bottom top",
-              scrub: compact ? 0.35 : 0.65,
+              end: "clamp(bottom top)",
+              scrub: compact ? 0.25 : 0.35,
               invalidateOnRefresh: true,
               onEnter: () => gsap.set(section, { zIndex: 2 + index }),
               onEnterBack: () => gsap.set(section, { zIndex: 2 + index }),
@@ -69,30 +67,31 @@ export default function ScrollTransitions() {
             .fromTo(
               section,
               {
-                scale: compact ? 0.96 : 0.89,
-                y: compact ? 24 : 54,
-                z: compact ? 0 : -110,
-                opacity: compact ? 0.76 : 0.64,
-                transformOrigin: "center center",
+                y: compact ? 14 : 24,
+                scale: edgeScale,
+                force3D: false,
+                opacity: 0.92,
               },
               {
-                scale: 1,
                 y: 0,
-                z: 0,
+                scale: 1,
                 opacity: 1,
-                ease: "none",
-                duration: 0.5,
+                ease: "sine.inOut",
+                duration: zoomDuration,
                 immediateRender: true,
               },
             )
-            .to(section, {
-              scale: compact ? 0.96 : 0.89,
-              y: compact ? -18 : -42,
-              z: compact ? 0 : -110,
-              opacity: compact ? 0.76 : 0.58,
-              ease: "none",
-              duration: 0.5,
-            });
+            .to(
+              section,
+              {
+                y: compact ? -10 : -18,
+                scale: edgeScale,
+                opacity: 0.92,
+                ease: "sine.inOut",
+                duration: zoomDuration,
+              },
+              1 - zoomDuration,
+            );
         });
 
         return () => {

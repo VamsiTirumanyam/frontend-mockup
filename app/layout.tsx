@@ -35,11 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="scheme-light scroll-smooth scroll-pt-[88px]" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
       </head>
-      <body className={`${inter.variable} ${plusJakartaSans.variable}`}>
+      <body className={`${inter.variable} ${plusJakartaSans.variable} bg-(--mint-bg) font-sans text-(--ink) antialiased transition-[background-color,color] duration-350 ease-[ease] selection:bg-(--green) selection:text-white`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

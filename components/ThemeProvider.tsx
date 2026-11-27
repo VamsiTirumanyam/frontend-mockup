@@ -22,7 +22,9 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
-  const [transitionDirection, setTransitionDirection] = useState<Theme | null>(null);
+  const [transitionDirection, setTransitionDirection] = useState<Theme | null>(
+    null,
+  );
   const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isTransitioning = transitionDirection !== null;
 
@@ -51,7 +53,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (transitionTimer.current) return;
     setTheme((currentTheme) => {
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       if (!reducedMotion) {
         setTransitionDirection(nextTheme);
         transitionTimer.current = setTimeout(() => {
@@ -93,18 +97,38 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
                 className="theme-car-window"
                 d="m83.2 39.9 21.4-20.6a17 17 0 0 1 11.8-4.8h47.4c5.8 0 11.2 3.1 14.1 8.2l15.3 27.4H67.1l6.2-4.7a47 47 0 0 1 9.9-5.5Z"
               />
-              <path className="theme-car-detail" d="M108 16v34.1m77.9 0H63.3M33 62.5h14m153.7 0h10" />
-              <path className="theme-car-highlight" d="m24 75 13.5-2.8m186.8 2.8-10.4-4.6" />
+              <path
+                className="theme-car-detail"
+                d="M108 16v34.1m77.9 0H63.3M33 62.5h14m153.7 0h10"
+              />
+              <path
+                className="theme-car-highlight"
+                d="m24 75 13.5-2.8m186.8 2.8-10.4-4.6"
+              />
               <circle className="theme-car-wheel" cx="65" cy="83" r="17" />
               <circle className="theme-car-wheel-inner" cx="65" cy="83" r="7" />
               <circle className="theme-car-wheel" cx="185" cy="83" r="17" />
-              <circle className="theme-car-wheel-inner" cx="185" cy="83" r="7" />
+              <circle
+                className="theme-car-wheel-inner"
+                cx="185"
+                cy="83"
+                r="7"
+              />
             </svg>
             <span className="theme-drive-panel">
               <span className="theme-drive-indicator" />
               <span>
-                <strong>{transitionDirection === "dark" ? "Night mode engaged" : "Day mode engaged"}</strong>
-                <small>SpareLab · {transitionDirection === "dark" ? "After-hours drive" : "Morning drive"}</small>
+                <strong>
+                  {transitionDirection === "dark"
+                    ? "Night mode engaged"
+                    : "Day mode engaged"}
+                </strong>
+                <small>
+                  SpareLab ·{" "}
+                  {transitionDirection === "dark"
+                    ? "After-hours drive"
+                    : "Morning drive"}
+                </small>
               </span>
             </span>
           </div>

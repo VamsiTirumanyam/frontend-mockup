@@ -18,7 +18,7 @@ import {
   siToyota,
   siVolkswagen,
 } from "simple-icons";
-import { pageContainerClassName } from "./Shared";
+import { eyebrowDotClassName, pageContainerClassName } from "./Shared";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -77,26 +77,30 @@ export default function StatsBrandsSection() {
         return;
       }
 
-      section.querySelectorAll<HTMLElement>("[data-counter]").forEach((element) => {
-        const target = Number(element.dataset.counter);
-        const counter = { value: 0 };
-        element.textContent = "0";
+      section
+        .querySelectorAll<HTMLElement>("[data-counter]")
+        .forEach((element) => {
+          const target = Number(element.dataset.counter);
+          const counter = { value: 0 };
+          element.textContent = "0";
 
-        gsap.to(counter, {
-          value: target,
-          duration: 1.6,
-          ease: "power2.out",
-          snap: { value: 1 },
-          onUpdate: () => {
-            element.textContent = Math.round(counter.value).toLocaleString("en-US");
-          },
-          scrollTrigger: {
-            trigger: section,
-            start: "top 82%",
-            once: true,
-          },
+          gsap.to(counter, {
+            value: target,
+            duration: 1.6,
+            ease: "power2.out",
+            snap: { value: 1 },
+            onUpdate: () => {
+              element.textContent = Math.round(counter.value).toLocaleString(
+                "en-US",
+              );
+            },
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%",
+              once: true,
+            },
+          });
         });
-      });
     },
     { scope: statsRef },
   );
@@ -105,7 +109,7 @@ export default function StatsBrandsSection() {
     <>
       <section
         ref={statsRef}
-        className="stats-section cinematic-section"
+        className="stats-section relative z-[1]"
         data-cinematic-section
         aria-label="Sparelab network at a glance"
       >
@@ -113,7 +117,9 @@ export default function StatsBrandsSection() {
           <div className="stats-grid">
             {stats.map(({ value, suffix, title, description }) => (
               <div className="stat" key={title}>
-                <strong aria-label={`${value.toLocaleString("en-US")}${suffix}`}>
+                <strong
+                  aria-label={`${value.toLocaleString("en-US")}${suffix}`}
+                >
                   <span data-counter={value}>
                     {value.toLocaleString("en-US")}
                   </span>
@@ -127,19 +133,22 @@ export default function StatsBrandsSection() {
         </div>
       </section>
       <section
-        className="brands-section cinematic-section"
+        className="brands-section relative z-[1]"
         data-cinematic-section
         aria-label="Supported automotive brands"
       >
         <div className={`${pageContainerClassName} brands-inner`}>
           <div className="brands-pill">
             <p className="brands-eyebrow">
-              <span className="eyebrow-dot" />
+              <span className={eyebrowDotClassName} />
               Supported vehicle brands & OEM networks
               <span className="brands-divider">·</span>
               100% VIN fitment across 45,000+ models
             </p>
-            <div className="brands-marquee" aria-label="Supported vehicle brands">
+            <div
+              className="brands-marquee"
+              aria-label="Supported vehicle brands"
+            >
               <div className="brands-track">
                 {[0, 1].map((repeat) => (
                   <div

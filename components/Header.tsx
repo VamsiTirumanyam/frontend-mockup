@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Wordmark } from "./Shared";
@@ -24,14 +24,25 @@ export default function Header() {
           className={`main-nav${menuOpen ? " main-nav--open" : ""}`}
           aria-label="Main navigation"
         >
-          <a href="#services" onClick={() => setMenuOpen(false)}>Products & Services</a>
-          <a href="#workflow" onClick={() => setMenuOpen(false)}>How It Works</a>
-          <a href="#vendors" onClick={() => setMenuOpen(false)}>For Vendors</a>
+          <a href="#services" onClick={() => setMenuOpen(false)}>
+            Products & Services
+          </a>
+          <a href="#workflow" onClick={() => setMenuOpen(false)}>
+            How It Works
+          </a>
+          <a href="#vendors" onClick={() => setMenuOpen(false)}>
+            For Vendors
+          </a>
         </nav>
-        <div className="nav-actions">
-          <a className="sign-in" href="#footer">Sign In</a>
+        <div className="nav-actions flex items-center gap-[22px] max-[760px]:gap-3 max-[520px]:gap-[9px]">
+          <a className="sign-in" href="#footer">
+            Sign In
+          </a>
           <a className="button button--primary button--nav" href="#vendors">
-            Get Started <span className="avatar-icon">↗</span>
+            Get Started{" "}
+            <span className="grid size-[22px] place-items-center rounded-full bg-white/22 text-[13px]">
+              <ArrowUpRight size={14} aria-hidden="true" />
+            </span>
           </a>
           <ThemeToggle />
         </div>

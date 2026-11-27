@@ -17,10 +17,14 @@ export default function ThemeToggle() {
       title={`Switch to ${nextTheme} mode`}
       disabled={isTransitioning}
     >
-      <span className={`theme-toggle-icon${theme === "light" ? " theme-toggle-icon--active" : ""}`}>
+      <span
+        className={`theme-toggle-icon${theme === "light" ? " theme-toggle-icon--active" : ""}`}
+      >
         <Moon size={16} aria-hidden="true" />
       </span>
-      <span className={`theme-toggle-icon theme-toggle-icon--sun${theme === "dark" ? " theme-toggle-icon--active" : ""}`}>
+      <span
+        className={`theme-toggle-icon${theme === "dark" ? " theme-toggle-icon--active" : ""}`}
+      >
         <Sun size={16} aria-hidden="true" />
       </span>
     </button>
