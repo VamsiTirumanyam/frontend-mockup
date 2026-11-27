@@ -26,7 +26,7 @@ export default function Header() {
         >
           <a href="#services" onClick={() => setMenuOpen(false)}>Products & Services</a>
           <a href="#workflow" onClick={() => setMenuOpen(false)}>How It Works</a>
-          <a href="#customers" onClick={() => setMenuOpen(false)}>For Customers</a>
+          {/* <a href="#customers" onClick={() => setMenuOpen(false)}>For Customers</a> */}
           <a href="#vendors" onClick={() => setMenuOpen(false)}>For Vendors</a>
         </nav>
         <div className="nav-actions">
